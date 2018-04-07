@@ -4,7 +4,7 @@ require 'zlib'
 require 'faraday_middleware/response_middleware'
 
 module FaradayMiddleware
-  class Gzip < ResponseMiddleware
+  class Gzippy < ResponseMiddleware
     define_parser do |body|
       Zlib::GzipReader.new(StringIO.new(body)).read
     end
@@ -15,4 +15,4 @@ module FaradayMiddleware
   end
 end
 
-Faraday::Response.register_middleware :gzip => FaradayMiddleware::Gzip
+Faraday::Response.register_middleware :gzip => FaradayMiddleware::Gzippy
